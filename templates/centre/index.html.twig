@@ -1,0 +1,93 @@
+
+
+
+
+
+
+
+
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Centre {% endblock %}</title>
+    <div class="tab">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <div class="card-header">
+                        <h4 class="card-title">Centres</h4>
+
+                        <a href="{{ path('app_centre_new') }}"  class="btn btn-primary mb-2">Ajouter</a>
+
+                    </div>
+
+                    <table class="table table-bordered table-striped verticle-right table-responsive-sm table-hover">
+
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom Centre</th>
+                            <th>Adresse</th>
+                            <th>Num Telephone</th>
+                            <th>Nombre Bloc Centre</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for centre in centres %}
+                            <tr href="{{ path('app_centre_show', {'id': centre.id}) }}">
+                                <td>{{ centre.id }}</td>
+                                <td>{{ centre.NomCentre }}</td>
+                                <td>{{ centre.localisation }}</td>
+                                <td>{{ centre.CapaciteCentre }}</td>
+                                <td>{{ centre.NombreBlocCentre }}</td>
+
+                                <td width="5%"><span><a href="{{ path('app_centre_edit', {'id': centre.id}) }}" class="mr-4" data-toggle="tooltip"
+                                                        data-placement="top" title="Modifer"><i
+                                                    class="fa fa-pencil color-muted"></i> </a>
+                                        <a class="fa fa-eye" style="display:flex;" aria-hidden="true" href="{{ path('app_centre_show', {'id': centre.id}) }}"></a>
+                                        <form method="post" action="{{ path('app_centre_delete', {'id': centre.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément');">
+                                        <button href="{{ path('app_centre_delete', {'id': centre.id}) }}" title="Supprimer" class="fa fa-trash-o color-danger border-0" >
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ centre.id) }}">
+                                            </button>
+                                        </form>
+                            </span>
+
+                                </td>
+
+                            </tr>
+                        {% else %}
+                            <td></td>
+                            <td>
+                                I'll n'a pas des centres '
+                            </td>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .tab{
+
+            width: 1000px;
+            position: relative;
+            margin-top: 200px;
+            left: 400px;
+        }
+        button:hover{
+            color: red;
+        }
+        .rounded-corners{
+            border-radius: 10%;
+        }
+
+
+    </style>
+    <a href="{{ path('app_centre_new') }}">Create new</a>
+{% endblock %}
+

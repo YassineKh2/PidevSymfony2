@@ -1,0 +1,21 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New Session{% endblock %}
+
+{% block body %}
+    <div class="newform">
+        <h1>Ajouter Session</h1>
+
+        {{ include('session/_form.html.twig') }}
+
+
+    </div>
+    <style>
+        .newform{
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+    </style>
+{% endblock %}

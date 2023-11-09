@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+    <body>
+
+
+    <main id="main" data-aos="fade-in">
+        <a style="margin-left: 1335px;margin-top: 100px" href="{{path('modifierProfile',{'id':app.user.id})}}" class="get-started-btn">Edit profile</a>
+        <!-- ======= Trainers Section ======= -->
+        <section id="trainers" class="trainers">
+            <div class="container" data-aos="fade-up">
+                <div style="margin-left: 470px" class="row" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                        <div class="member">
+                            <img src="{{ asset('/uploads/'~app.user.image) }}" class="img-fluid" alt="">
+                            <div style="width: 450px" class="member-content">
+                                <h4>{{ app.user.nom  }}-{{ app.user.prenom }}</h4>
+                                <span>{{ app.user.email  }}</span>
+                                <p>
+                                   +216 {{ app.user.numero  }}                                </p>
+                                <div class="social">
+                                    <a href=""><i class="bi bi-twitter"></i></a>
+                                    <a href=""><i class="bi bi-facebook"></i></a>
+                                    <a href=""><i class="bi bi-instagram"></i></a>
+                                    <a href=""><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </section><!-- End Trainers Section -->
+
+    </main><!-- End #main -->
+  <style> body{
+    background: url("Front/img/wood.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    }
+</style>
+    </body>
+{% endblock %}

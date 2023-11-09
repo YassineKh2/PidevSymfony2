@@ -1,0 +1,22 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New Formation{% endblock %}
+
+{% block body %}
+    <div class="newform">
+    <h1>Ajouter Formation</h1>
+
+    {{ include('formation/_form.html.twig') }}
+
+    <a href="{{ path('app_formation_index_back') }}">Precedent</a>
+    </div>
+    <style>
+        .newform{
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+    </style>
+{% endblock %}
+

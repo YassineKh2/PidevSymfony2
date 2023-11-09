@@ -1,0 +1,57 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}CommantairePublication index{% endblock %}
+
+{% block body %}
+    <style>
+        .comm{
+            display: flex;
+            flex-direction: column;
+        }
+        .showcomm{
+            width: 50%;
+            margin-top: 200px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            column-gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .dcomm{
+            color: grey;
+        }
+        .actions{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <div class="showcomm">
+        <h1>Commentaires</h1>
+
+        <div>
+            {% for commantaire_publication in commantaire_publications %}
+                <div class="comm">
+                    <span>{{ commantaire_publication.User.getNom() }}</span>
+                    <div class="dcomm">{{ commantaire_publication.DateCommantaire ? commantaire_publication.DateCommantaire|date('Y-m-d') : '' }}</div>
+                    <div>{{ commantaire_publication.ContenuCommantaire }}</div>
+                    <hr>
+                    <div class="actions">
+
+                        <form method="post" action="{{ path('admin_commantaire_publication_delete', {'id': commantaire_publication.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commantaire_publication.id) }}">
+                            <button class="btn btn-danger">Suprimer</button>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+
+            {% endfor %}
+        </div>
+        <a href="{{ path('admin_publication_index') }}">Retourner à la liste des publications</a>
+
+    </div>
+
+{% endblock %}

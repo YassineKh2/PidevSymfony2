@@ -1,0 +1,726 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique{% endblock %}
+
+{% block body %}
+    <br><br><br><br><br><br><br><br><br>
+    <!-- Shop Detail Start -->
+    <div class="container-fluid pb-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 mb-30">
+                <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-item active">
+                            <img class="w-100 h-100" src="{{ asset(article.ImageArticle)|imagine_filter('resize') }}" alt="Image">
+                        </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7 h-auto mb-30">
+                <div class="h-100 bg-light p-30">
+                    <h3>{{ article.NomArticle }}</h3>
+                    <div class="d-flex mb-3">
+
+
+                       {% if (AvRating|round)  == 0 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                           <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% elseif  AvRating|round  == 0.5 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star-half-alt"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+
+                        {% elseif  AvRating|round  == 1 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+
+                        {% elseif  AvRating|round  == 1.5 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star-half-alt"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% elseif  AvRating|round  == 2 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% elseif  AvRating|round  == 2.5 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star-half-alt"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% elseif  AvRating|round  == 3 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% elseif  AvRating|round  == 3.5 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star-half-alt"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% elseif  AvRating|round  == 4 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="far fa-star"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% elseif  AvRating|round  == 4.5 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star-half-alt"></small>
+                                <small class="far fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% elseif  (AvRating|round)  == 5 %}
+                        <div class="d-flex mb-3">
+                            <div class="text-primary mr-2">
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                                <small class="fas fa-star"></small>
+                            </div>
+                            <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                        </div>
+                        {% endif %}
+                        <button type="button" class="btn btn-primary ml-2" data-toggle="modal" data-target="#ratingModal">
+                            Rate
+                        </button>
+
+                        <div class="modal fade" id="ratingModal" tabindex="-1" role="dialog" aria-labelledby="ratingModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="ratingModalLabel">Rate this item</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+
+
+                                        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}}) }}
+                                        <div class="rating">
+                                            <label for="{{ form.Stars.vars.id }}">Rating:</label>
+                                            {% for i in 1..5 %}
+                                                <span class="star" data-value="{{ i }}">☆</span>
+                                            {% endfor %}
+                                        </div>
+                                        {{ form_row(form.Comment, { 'label': 'Comment' }) }}
+                                        <br>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        {{ form_end(form) }}
+                                    </div> </div>
+                        </div>
+                    </div>
+                    </div>
+                    {% if (article.RemisePourcentageArticle != 0)  and (article.RemisePourcentageArticle != null) %}
+                        {% set NewPrix = article.PrixArticle - ( article.PrixArticle * article.RemisePourcentageArticle ) / 100  %}
+                        <h3 class="prixA pl-1">{{ NewPrix }}$</h3><h4 class="text-muted ml-2 "><del>{{ article.PrixArticle }}$</del></h4>
+                    {% else %}
+                        <h3 class="prixA">{{ article.PrixArticle }}$</h3>
+                    {% endif %}
+                    <p class="mb-4">{{ article.ArticleDiscription }}</p>
+
+                    {% if  article.sizeArticles.count() != 0 %}
+
+                    <div class="d-flex mb-3">
+                        <strong class="text-dark mr-3">Taille:</strong>
+                        <form>
+                        {% for size in article.sizeArticles %}
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="size-{{ size.Size }}" name="size" value="{{ size.Size }}">
+                                <label class="custom-control-label" for="size-{{ size.Size }}">{{ size.Size }}</label>
+
+                            </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+
+                     {% endif %}
+
+                    {% if  article.colorArticles.count() != 0 %}
+                    <div class="d-flex mb-4">
+                        <strong class="text-dark mr-3">Couleurs:</strong>
+                        <form>
+                            {% for color in article.colorArticles %}
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="color-{{ color.Color }}" name="color" value="{{ color.Color }}">
+                                <label class="custom-control-label" for="color-{{ color.Color }}">{{ color.Color }}</label>
+                            </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+                    {% endif %}
+
+
+                    {% if article.QuantiteArticle !=0 %}
+                    <div class="d-flex align-items-center mb-4 pt-2">
+                        <div class="input-group quantity mr-3" style="width: 130px;">
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary btn-minus" id="minusButton">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            {% set test = 0 %}
+                            <input type="text" id="quantity_input" class="form-control bg-secondary border-0 text-center removeSpin" value="{{ test }}" disabled>
+                            <div class="input-group-btn">
+                                <button class="btn btn-primary btn-plus" id="plusButton">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+
+                        </div>
+
+                            <a href="{{ path("app_article_ajouter_panier",{'id' : article.id, 'quantity': test}) }}" id="add_to_cart_button" class="btn btn-primary px-3">
+                                <i class="fa fa-shopping-cart mr-1"></i>Ajouter à Pannier
+                            </a>
+                        {% else %}
+                            <h4 style="color: red"> Hors Stock</h4>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="d-flex pt-2">
+                        <div class="d-inline-flex">
+                            <a class="text-dark px-2" href="{{ path('app_article_share_facebook',{'id' : article.id}) }}">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <div id="fb-root"></div>
+                           <a class="text-dark px-2" href="{{ path("app_article_share_twitter",{'id' : article.id}) }}">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-pinterest"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="bg-light p-30">
+                    <div class="nav nav-tabs mb-4">
+                        <a class="nav-item nav-link text-dark active" data-toggle="tab" href="#tab-pane-1">Description</a>
+                        <a class="nav-item nav-link text-dark" data-toggle="tab" href="#tab-pane-3">Évaluations ({{ article.ratings.count() }})</a>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="tab-pane-1">
+                            <h4 class="mb-3">Description du produit</h4>
+                          <p>{{ article.ArticleDiscription }}</p>
+                           </div>
+                        <div class="tab-pane fade" id="tab-pane-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">{{ article.ratings.count() }} Évaluations Pour {{ article.NomArticle }}</h4>
+
+                                    {% for rating in article.ratings %}
+                                    <div class="media mb-4">
+                                        <div class="media-body">
+                                            <h6>{{ rating.User.nom }}<small> - <i>{{ rating.RatingDate|date('Y-m-d H:i:s') }}</i></small></h6>
+
+                                            {% if (AvRating|round)  == 0 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% elseif  rating.Stars|round  == 0.5 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star-half-alt"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+
+                                            {% elseif  rating.Stars|round  == 1 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+
+                                            {% elseif  rating.Stars|round  == 1.5 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star-half-alt"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% elseif  rating.Stars|round  == 2 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% elseif  rating.Stars|round  == 2.5 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star-half-alt"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% elseif  rating.Stars|round  == 3 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% elseif  rating.Stars|round  == 3.5 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star-half-alt"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% elseif  rating.Stars|round  == 4 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% elseif  rating.Stars|round  == 4.5 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star-half-alt"></small>
+                                                        <small class="far fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% elseif  (rating.Stars|round)  == 5 %}
+                                                <div class="d-flex mb-3">
+                                                    <div class="text-primary mr-2">
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                        <small class="fas fa-star"></small>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                            <p>{{ rating.Comment }}</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- Products Start -->
+    <div class="container-fluid py-5">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Tu pourrais aussi aimer</span></h2>
+        <div class="row px-xl-5">
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+                    {% for article in articles %}
+                        {% set NewAvRating = 0 %}
+                            {% for rating in article.ratings %}
+                                {% set NewAvRating =  NewAvRating + rating.Stars %}
+                                {% endfor %}
+                    <div class="product-item bg-light">
+                        <div class="product-img position-relative overflow-hidden">
+                            <img class="img-fluid w-100 ReccomandationImgs" src="{{ asset(article.ImageArticle) }}" alt="">
+                            <div class="product-action">
+                                <a class="btn btn-outline-dark btn-square" href="{{ path("app_article_ajouter_panier",{'id' : article.id, 'quantity': 1}) }}"><i class="fa fa-shopping-cart"></i></a>
+                                <a class="btn btn-outline-dark btn-square" href="{{ path('app_article',{'id' :article.id }) }}"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center py-4">
+                            <a class="h6 text-decoration-none text-truncate" href="">{{ article.NomArticle }}</a>
+                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                {% if (article.RemisePourcentageArticle != 0)  and (article.RemisePourcentageArticle != null) %}
+                                    {% set NewPrix = article.PrixArticle - ( article.PrixArticle * article.RemisePourcentageArticle ) / 100  %}
+                                    <h5 class="prixA">{{ NewPrix }}$</h5>  <h6 class="text-muted ml-2"><del>{{ article.PrixArticle }}$</del></h6>
+                                {% else %}
+                                    <h5 class="prixA">{{ article.PrixArticle }}$</h5>
+                                {% endif %}
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center mb-1">
+
+                                {% if (NewAvRating|round)  == 0 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% elseif  NewAvRating|round  == 0.5 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star-half-alt"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+
+                                {% elseif  NewAvRating|round  == 1 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+
+                                {% elseif  NewAvRating|round  == 1.5 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star-half-alt"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% elseif  NewAvRating|round  == 2 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% elseif  NewAvRating|round  == 2.5 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star-half-alt"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% elseif  NewAvRating|round  == 3 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% elseif  NewAvRating|round  == 3.5 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star-half-alt"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% elseif  NewAvRating|round  == 4 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% elseif  NewAvRating|round  == 4.5 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star-half-alt"></small>
+                                            <small class="far fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% elseif  NewAvRating|round  == 5 %}
+                                    <div class="d-flex mb-3">
+                                        <div class="text-primary mr-2">
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                            <small class="fas fa-star"></small>
+                                        </div>
+                                        <small class="pt-1">({{ article.ratings.count()}} Évaluation)</small>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Products End -->
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('Front/Shop/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('Front/Shop/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('Front/Shop/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('Front/Shop/mail/contact.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('Front/Shop/js/main.js') }}"></script>
+
+    <!-- Favicon -->
+    <link href="{{ asset('Front/Shopimg/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('Front/Shop/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('Front/Shop/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('Front/Shop/css/style.css') }}" rel="stylesheet">
+
+    <style>
+        .prixA{
+            font-family: 'Roboto', sans-serif;
+        }
+        .ReccomandationImgs{
+            min-width: 100%;
+            min-height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            height: 10vh;
+            width: 10vh;
+            object-fit: cover;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+    </style>
+
+
+    <script>
+
+        // Select the input field and buttons
+        const minusButton = document.querySelector('#minusButton');
+        const plusButton = document.querySelector('#plusButton');
+        const quantityInput = document.querySelector('#quantity_input');
+        const addToCartButton = document.querySelector('#add_to_cart_button');
+
+
+
+
+
+        minusButton.addEventListener('click', () => {
+            let currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.setAttribute('value',currentValue - 1);
+
+            }
+        });
+
+        plusButton.addEventListener('click', () => {
+            let currentValue = parseInt(quantityInput.value);
+            if(currentValue < {{ article.QuantiteArticle }}) {
+                quantityInput.setAttribute('value', currentValue + 1);
+
+            }
+        });
+
+
+
+        addToCartButton.addEventListener('click', () => {
+            let selectedcolor= document.querySelector('input[name="color"]:checked');
+            let selectedsize = document.querySelector('input[name="size"]:checked');
+            if (selectedcolor !== null) {
+                selectedcolorvalue = selectedcolor.value
+            } else {
+                selectedcolorvalue = 0
+            }
+
+            if (selectedsize !== null) {
+                selectedsizevalue = selectedsize.value
+            } else {
+                selectedsizevalue = 0
+            }
+
+            let currentValue = parseInt(quantityInput.value);
+            addToCartButton.href = '{{ path("app_article_ajouter_panier", {'id': article.id, 'quantity': " "}) }}' + currentValue + '?selectedcolor='+selectedcolorvalue+"&selectedsize="+selectedsizevalue;
+        });
+
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.querySelector('#{{ form.Stars.vars.id }}');
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const value = star.getAttribute('data-value');
+                ratingInput.value = value;
+                updateStars(value);
+            });
+
+            star.addEventListener('mouseover', () => {
+                const value = star.getAttribute('data-value');
+                updateStars(value);
+            });
+
+            star.addEventListener('mouseout', () => {
+                const value = ratingInput.value;
+                updateStars(value);
+
+            });
+        });
+
+        function updateStars(value) {
+            stars.forEach(star => {
+                const starValue = star.getAttribute('data-value');
+                if (starValue <= value) {
+                    star.textContent = '★';
+                    star.classList.add('active');
+                } else {
+                    star.textContent = '☆';
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+    </script>
+    <script src="{{ asset('https://code.jquery.com/jquery-3.3.1.slim.min.js') }}"></script>
+    <script src="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js') }}"></script>
+    <script src="{{ asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js') }}"></script>
+{% endblock %}

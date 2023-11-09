@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Publication{% endblock %}
+
+{% block body %}
+    <style>
+        .editpub{
+            width: 50%;
+            margin-top: 153px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            column-gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .form{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <div class="editpub">
+        <h1>Edit Publication</h1>
+
+        <div class="form">
+            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+            <div>{{form_widget(form.ContenuPublication)}}</div>
+            <div>{{ form_errors(form.ContenuPublication) }}</div>
+            <div>{{ form_widget(form.ImageForum) }}</div>
+            <button class="btn">{{ button_label|default('Update') }}</button>
+            {{ form_end(form) }}
+        </div>
+
+        <a href="{{ path('app_publication_index') }}">back to list</a>
+    </div>
+
+{% endblock %}

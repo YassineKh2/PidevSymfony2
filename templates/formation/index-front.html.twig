@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block body %}
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="author" content="colorlib.com">
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700" rel="stylesheet" />
+        <link href="{{ asset('Front/formation/search/css/main.css')}}" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" >
+    </head>
+    <h1>Formation</h1>
+    <div class="breadcrumbs">
+        <div class="container">
+            <h2>Formations</h2>
+            <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+        </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Courses Section ======= -->
+
+
+    <section id="popular-courses" class="courses">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+
+                <div class="container h-100">
+                    <div class="d-flex justify-content-center h-100">
+                        <div class="searchbar">
+                            {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+                            <div class="input-group mb-3">
+                                <span class="search-input"> {{ form_widget(form.search, { 'attr': {'class': 'form-control search-input', 'placeholder': 'Search'} })}}
+                                </span>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary search-btn" type="submit">{{ button_label|default('Search') }}</button>
+                                </div>
+                            </div>
+
+                            {{ form_end(form) }}
+
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Formations</h2>
+
+                <p>Tous Formations</p>
+
+            </div>
+
+            <div class="row" data-aos="zoom-in" data-aos-delay="100">
+                {% for formation in formations%}
+                <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                    <div class="course-item">
+
+                        <img src="{{ asset(formation.ImageFormation)}}" class="img-fluid" alt="..." style="height:300px; width: 500px">
+                        <div class="course-content">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 style="background-color: #ffffff">
+                                    <a href="{{ path('app_formation_show', {'id': formation.id}) }}" class="text-decoration-none d-inline-flex align-items-center bg-primary text-white py-2 px-3 rounded-3">
+                                        <i class="fas fa-search me-2"></i>
+                                        Voir Détail
+                                    </a>
+                                </h4>
+                                <p class="price">$169</p>
+                            </div>
+
+                            <h3>{{formation.getNomFormation()}}</h3>
+                            <p>{{ formation.DescriptionFormation|slice(0,30) }}...</p>
+                            <div class="trainer d-flex justify-content-between align-items-center">
+                                <div class="trainer-profile d-flex align-items-center">
+                                    <img src="{{ asset(formation.Formateur.ImageFormateur)}}" class="img-fluid" alt="">
+                                    <span>{{ formation.Formateur.getNomFormateur() }} {{ formation.Formateur.getPrenomFormateur() }}</span>
+                                </div>
+                                <div class="trainer-rank d-flex align-items-center">
+                                    <i class="bx bx-user"></i>50
+
+                                    <a href=""><i class="bx bx-heart"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {% else %}
+
+                    <td>
+                        I'll n'a aucune formation
+                    </td>
+                {% endfor %}
+                <!-- End Course Item-->
+
+
+
+            </div>
+
+        </div>
+    </section>
+    <div class="pagination">
+        <!-- End Popular Courses Section -->
+        {{ knp_pagination_render(formations) }}
+    </div>
+    <style>
+        .search-input {
+            border: none;
+            border-radius: 20px;
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 12px 20px;
+            box-shadow: none;
+        }
+
+        .search-input:focus {
+            box-shadow: none;
+            outline: none;
+        }
+
+        .search-btn {
+            border: none;
+            border-radius: 20px;
+            background-color: #4daea7;
+            color: #fff;
+            padding: 12px 20px;
+            transition: all 0.3s ease;
+
+        }
+
+        .search-btn:hover {
+            background-color: #4daea7;
+            transform: translateY(-2px);
+        }
+
+        .search-btn:focus {
+            box-shadow: none;
+            outline: none;
+        }
+    </style>
+
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination a,
+        .pagination span {
+            padding: 5px 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #4daea7;
+            border: 1px solid #4daea7;
+        }
+
+        .pagination .active a,
+        .pagination a:hover {
+            background-color: #4daea7;
+            color: #4daea7;
+            border-color: #4daea7;
+        }
+    </style>
+
+
+
+{% endblock %}

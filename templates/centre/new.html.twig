@@ -1,0 +1,80 @@
+
+
+
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New  Centre{% endblock %}
+
+{% block body %}
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Centre</h4>
+                            <br><br><br>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                {{ form_start(form,{'attr':{'novalidate':'novalidate'}},{'attr':{'class':'forms-sample'}}) }}
+                                <div class="form-group row">
+                                    {{form_label(form.NomCentre,"Le nom du centre:")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.NomCentre,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.NomCentre) is not empty %}
+                                            <li class="text-danger">    <p class="form-text text-muted">{{ form_errors(form.NomCentre) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.CapaciteCentre,"Le numero de telephone:")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.CapaciteCentre,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.CapaciteCentre) is not empty %}
+                                            <li class="text-danger"> <p class="form-text text-muted">{{ form_errors(form.CapaciteCentre) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.localisation,"Adresse :")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.localisation,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.localisation) is not empty %}
+                                            <li class="text-danger"> <p class="form-text text-muted">{{ form_errors(form.localisationCentre) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.NombreBlocCentre,"Nombre des blocs :")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.NombreBlocCentre,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.NombreBlocCentre) is not empty %}
+                                            <li class="text-danger"> <p class="form-text text-muted">{{ form_errors(form.NombreBlocCentre) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+
+
+                                <div align="center" class="card-footer">
+                                    <button class="btn btn-primary mr-2">{{ button_label|default('Enregistrer') }}</button>
+                                    <button class="btn btn-primary mr-2"><a href="{{ path('app_centre_index') }}">Retour</a></button>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

@@ -1,0 +1,106 @@
+<style>
+    body {
+        background-color: #FFFFFF;
+        margin: 50px;
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        color: #ff5821;
+        font-style: italic,normal;
+        text-align: center;
+    }
+    header {
+        padding: 10px;
+        background-color: #ff5821;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+    }
+    footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 10px;
+        background-color: #f2f2f2;
+        font-size: 12px;
+        text-align: center;
+        border-top: 1px solid #ddd;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: grey;
+        color: black;
+        text-align: center;
+    }
+    thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+    }
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    .text-right {
+        text-align: center!important;
+    }
+    .font-weight-bold {
+        font-weight: bold!important;
+    }
+    .info{
+        text-align:center;
+    }
+    .infosign{
+        float:right;
+    }
+    .infosignroues
+    {
+
+    }
+</style>
+
+<h1 class="display-4" style="color:#ff5821">PLANNING</h1>
+
+<table class="table-striped">
+    <tr>
+        <th>ID de plan</th>
+        <td>{{ planning_centre.id }}</td>
+    </tr>
+    <tr>
+        <th>Nom du centre</th>
+        <td>{{ planning_centre.titre }}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ planning_centre.Description }}</td>
+    </tr>
+    <tr>
+        <th>Adresse</th>
+        <td>{{ planning_centre.local }}</td>
+    </tr>
+    <tr>
+        <th>Date début</th>
+        <td>{{ planning_centre.DateDebutPlanning|date('d/m/Y') }}</td>
+    </tr>
+    <tr>
+        <th>Date fin</th>
+        <td>{{ planning_centre.DateFinPlanning|date('d/m/Y') }}</td>
+    </tr>
+</table>
+
+<div class="container">
+    <div class="footer">
+        <div style="float:right;">
+
+        </div>
+    </div>
+</div>

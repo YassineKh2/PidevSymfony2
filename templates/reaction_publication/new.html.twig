@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ReactionPublication{% endblock %}
+
+{% block body %}
+    <h1>Create new ReactionPublication</h1>
+
+    {{ include('reaction_publication/_form.html.twig') }}
+
+    <a href="{{ path('app_reaction_publication_index') }}">back to list</a>
+{% endblock %}

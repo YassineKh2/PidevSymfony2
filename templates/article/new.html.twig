@@ -1,0 +1,154 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block body %}
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+    <div class="formArticle">
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Ajouter une article</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                            <div>
+                                <section>
+                                    <div class="row">
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Nom article</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.NomArticle, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.NomArticle, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Categorie</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.Categorie, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.Categorie, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Prix article</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.PrixArticle, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.PrixArticle) }}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Description de l'article</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.ArticleDiscription, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.ArticleDiscription) }}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Quantite article</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.QuantiteArticle, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.QuantiteArticle) }}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Remise article</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.RemisePourcentageArticle, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.RemisePourcentageArticle) }}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Size article (sépares les par une espace)</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.Size, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.Size) }}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Color article (sépares les par une espace)</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.Color, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.Color) }}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Image de la article</label>
+                                                <div class="input-group">
+
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">Upload</span>
+                                                        </div>
+                                                        <div class="custom-file">
+                                                            <label class="custom-file-label">Chosiez une image</label>
+                                                            {{ form_widget(form.ImageArticle, { 'attr': {'class': 'custom-file-input' } })}}
+                                                        </div>
+                                                    </div>
+                                                    <li class="text-danger">{{ form_errors(form.ImageArticle, { 'attr': {'class': 'form-control' } })}}</li>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <button class="btn btn-primary mb-2">{{ button_label|default('Ajouter') }}</button>
+                                </section>
+                                {{ form_end(form) }}
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a class="btn btn-outline-secondary mb-2" href="{{ path('app_article_index') }}">Annuler</a>
+    </div>
+
+    <style>
+        .formArticle {
+            margin-top: 150px;
+            position: relative;
+            width: 1300px;
+            left: 500px;
+        }
+    </style>
+
+    <script>
+
+        var button = document.getElementById("addInputButton");
+        button.addEventListener("click", addInput);
+
+        function addInput() {
+            var input = document.createElement("input");
+            input.type = "text";
+            var container = document.getElementById("inputContainer");
+            container.appendChild(input);
+        }
+
+    </script>
+{% endblock %}

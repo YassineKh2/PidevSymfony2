@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List des publications{% endblock %}
+
+{% block body %}
+    <style>
+        .forum{
+            width: 50%;
+            margin-top: 153px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            column-gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .post{
+            border-bottom: 1px;
+            border-bottom-color: #0b0b0b;
+        }
+        .hpost{
+            display: flex;
+            flex-direction: column;
+        }
+        .dpost{
+            color: grey;
+        }
+
+    </style>
+    <div class="forum" >
+        <div>
+            <a class="" href={{ path('app_publication_new') }}>Ajouter une publication</a>
+            <h1>Liste des publications</h1>
+            {% for publication in publications %}
+                {% if publication.isApproved == true %}
+                <div class="post">
+                    <div class="hpost" >
+                        <span>{{ publication.User.nom }}</span>
+                        <span class="dpost">{{ publication.DatePublication ? publication.DatePublication|date('Y-m-d') : '' }}</span>
+                    </div>
+                    <div>
+                        <div>{{ publication.ContenuPublication }}</div>
+                        {% if publication.ImageForum %}
+                             <img class="rounded" src="{{ asset(publication.ImageForum) }}" width="500" alt="Publication image">
+                        {% endif %}
+                        <div>
+                            <a href="{{ path('app_publication_reaction', {'id': publication.id}) }}" class="btn btn-link js-like">
+
+                                <span class="js-likes">{{publication.reactionPublications | length }}</span>&nbsp;
+                                {% if app.user and publication.likedByUser(app.user) %}
+                                    <i class="fas fa-thumbs-up"></i>
+                                {% else %}
+                                    <i class="far fa-thumbs-up"></i>
+                                {% endif %}
+                            </a>
+
+                            <a href="{{ path('app_publication_show', {'id': publication.id}) }}">show</a>
+                            {# <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a> #}
+                            <a href="{{ path('showcommentsforonepub', {'id': publication.id}) }}">voir les commentaires</a>
+                            <a href="{{ path('app_commantaire_publication_new', {'id': publication.id}) }}">Ajouter un commentaire</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="pages">
+                {{ knp_pagination_render(publications) }}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        const LIKE_ICON = 'far fa-thumbs-up';
+        const UNLIKE_ICON = 'fas fa-thumbs-up';
+        Array.from(document.querySelectorAll('a.js-like')).forEach(function (link) {
+            link.addEventListener('click', onClickLink);
+        });
+        async function onClickLink(event) {
+            event.preventDefault();
+            const url = this.href;
+            const icone = this.querySelector('i');
+            const count = this.querySelector('span.js-likes');
+            try {
+                const result = await axios.post(url);
+                const data = result.data;
+                icone.className = icone.className === LIKE_ICON ? UNLIKE_ICON : LIKE_ICON;
+                count.textContent = data.likes;
+            } catch (error) {
+                if (error.response.status === 403) {
+                    window.location = '/'
+                }
+            }
+        }
+    </script>
+
+    
+
+
+
+{% endblock %}

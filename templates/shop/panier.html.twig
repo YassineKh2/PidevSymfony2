@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pannier{% endblock %}
+
+{% block body %}
+
+
+<br><br><br><br><br><br><br><br>
+
+
+    <!-- Cart Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-lg-8 table-responsive mb-5">
+                {% set Prixtotal = 0  %}
+                {% if Pannier | length == 0 %}
+                <h1>Vous n'avez pas ajoutez des produit</h1>
+                {% else %}
+                <table class="table table-light table-borderless table-hover text-center mb-0">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Article</th>
+                        <th>Prix</th>
+                        <th>Size</th>
+                        <th>Color</th>
+                        <th>Quantite</th>
+                        <th>Total</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    </thead>
+                    <tbody class="align-middle">
+
+
+
+
+                    {% for Ar in Pannier %}
+
+                    <tr>
+
+                        <td class="align-middle"><p><img src="{{ asset(Ar.article.ImageArticle) }} " alt="" style="width: 50px;"></p>{{ Ar.article.NomArticle }}</td>
+                        {% if Ar.color == 0 %}
+                        <td class="align-middle">-</td>
+                        {% else %}
+                        <td class="align-middle">{{ Ar.color }}</td>
+                        {% endif %}
+                        {% if Ar.size == 0 %}
+                        <td class="align-middle">-</td>
+                        {% else %}
+                        <td class="align-middle">{{ Ar.size }}</td>
+                        {% endif %}
+                        {% if (Ar.article.RemisePourcentageArticle != 0)  and (Ar.article.RemisePourcentageArticle != null) %}
+
+                        {% set NewPrix = Ar.article.PrixArticle - ( Ar.article.PrixArticle * Ar.article.RemisePourcentageArticle ) / 100  %}
+                            {% set total = NewPrix *   Ar.quantity %}
+                        <td class="align-middle">${{ NewPrix }} <del>{{ Ar.article.PrixArticle }}$</del></td>
+                        {% else %}
+                            {% set total =  Ar.article.PrixArticle *   Ar.quantity %}
+                            <td class="align-middle">{{ Ar.article.PrixArticle }}DT</td>
+                        {% endif %}
+                        <td class="align-middle">
+                            <div class="input-group quantity mx-auto" style="width: 100px;">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary btn-minus" >
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" value="{{ Ar.quantity }} " disabled>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary btn-plus">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        {% set Prixtotal = Prixtotal + total  %}
+                        <td class="align-middle">${{ total }}</td>
+                        <td class="align-middle"><a class="btn btn-sm btn-danger" href="{{ path('app_article_remove_from_panier',{'id' : Ar.article.id}) }}"><i class="fa fa-times"></i></a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+            <div class="col-lg-4">
+                <form class="mb-30" action="">
+                    <div class="input-group">
+                        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+                        {{ form_widget(form.CodeCoupon, { 'attr': {'class': 'form-control border-0 p-4','placeholder' : 'Code du coupon' } })}}
+                        {{ form_errors(form.CodeCoupon)}}
+                        <div class="input-group-append">
+                            <button class="btn btn-primary submit">Appliquer Coupon</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </form>
+                {% set Prixtotal = Prixtotal - ( Prixtotal * Reduction ) / 100  %}
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Cart Summary</span></h5>
+                <div class="bg-light p-30 mb-5">
+                    <div class="border-bottom pb-2">
+                        <div class="d-flex justify-content-between mb-3">
+                            <h6>Prix des articles</h6>
+                            <h6>{{ Prixtotal }} DT</h6>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <h6 class="font-weight-medium">Livraison</h6>
+                            <h6 class="font-weight-medium">Gratuit</h6>
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5>Total</h5>
+                            <h5>{{ Prixtotal }} DT</h5>
+                        </div>
+                        <a class="btn btn-block btn-primary font-weight-bold my-3 py-3" href="{{ path('app_article_panier_makepdf') }}">Passer à la caisse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cart End -->
+    <style>
+            .ArticleimgSizeSmall{
+                min-width: 10%;
+                min-height: 10%;
+                max-width: 20%;
+                max-height: 20%;
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+
+            }
+
+    </style>
+
+
+
+
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('Front/Shop/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('Front/Shop/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="{{ asset('Front/Shop/mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ asset('Front/Shop/mail/contact.js') }}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{ asset('Front/Shop/js/main.js') }}"></script>
+
+    <!-- Favicon -->
+    <link href="{{ asset('Front/Shopimg/favicon.ico') }}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('Front/Shop/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('Front/Shop/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ asset('Front/Shop/css/style.css') }}" rel="stylesheet">
+
+    <style>
+        .prixA{
+            font-family: 'Roboto', sans-serif;
+        }
+        .ArticleimgSize{
+            min-width: 100%;
+            min-height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            height: 50vh;
+            width: 50vh;
+            object-fit: cover;
+        }
+    </style>
+{% endblock %}

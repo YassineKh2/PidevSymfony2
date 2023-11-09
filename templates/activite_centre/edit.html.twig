@@ -1,0 +1,114 @@
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Modifer une acitivité {% endblock %}</title>
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+    <div class="formActivité">
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Modifer l'activité</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                            <div>
+                                <section>
+                                    <div class="row">
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Le jour de l'activité</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.JourActivite, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.JourActivite, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Le nom d'activité</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.NomActivite, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.NomActivite, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Le jour contenu d'activité</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.ContenuActivite, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.ContenuActivite, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">L'heure de début</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.HeureDebutActivite, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.HeureDebutActivite, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">L'heure de fin d'activité'</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.HeureFinActivite, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.HeureFinActivite, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Le nombre max des partc</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.NombreParticipantActiviteMax, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.NombreParticipantActiviteMax, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Plan</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.Planning, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.Planning, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+                                    <button class="btn btn-primary mb-2">{{ button_label|default('Valider') }}</button>
+                                </section>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+         <a href="{{ path('app_activite_centre_index') }} " class="btn btn-primary mb-2">Annuler </a>
+        </div>
+        {{ form_end(form) }}
+    <style>
+        .formActivité{
+            margin-top: 100px;
+            position: relative;
+            width: 800px;
+            left: 300px;
+        }
+    </style>
+    </div>
+    </div>
+{% endblock %}
+
+
+
+

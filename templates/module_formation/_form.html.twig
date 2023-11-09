@@ -1,0 +1,78 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+<div class="formArticle">
+    <div class="row">
+        <div class="col-xl-12 col-xxl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"></h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                        <div>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Nom Module</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.NomModule, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.NomModule, { 'attr': {'class': 'form-control' } })}}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Prerequis Module</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.PrerequisModule, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.PrerequisModule, { 'attr': {'class': 'form-control' } })}}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Duree Module</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.DureeModule, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.DureeModule) }}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Contenu Module</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.ContenuModule, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.ContenuModule) }}</li>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Formation</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.Formation, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.Formation) }}</li>
+                                        </div>
+                                    </div>
+
+
+                                    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+                                </div>
+                            </section>
+                            {{ form_end(form) }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="{{ path('app_session_back_index') }}">Precedent</a>

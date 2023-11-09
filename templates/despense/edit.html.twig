@@ -1,0 +1,23 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Edit despense{% endblock %}
+
+{% block body %}
+<div class="editform">
+    <h1>Editer despense</h1>
+
+    {{ include('despense/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_despense_index') }}"></a>
+
+
+</div>
+    <style>
+        .editform{
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+    </style>
+{% endblock %}

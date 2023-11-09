@@ -1,0 +1,60 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+<div class="formArticle">
+    <div class="row">
+        <div class="col-xl-12 col-xxl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Ajouter une session</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                        <div>
+                            <section>
+                                <div class="row">
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Montant</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.MontantDespense, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.MontantDespense) }}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Libelle Despense</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.LibelleDespense, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.LibelleDespense) }}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">ReductionDespense</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.ReductionDespense, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.ReductionDespense) }}</li>
+                                        </div>
+
+                                    </div>
+                                    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+
+                                </div>
+                            </section>
+                            {{ form_end(form) }}
+                        </div>
+                    </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<a href="{{ path('app_session_back_index') }}">Precedent</a>

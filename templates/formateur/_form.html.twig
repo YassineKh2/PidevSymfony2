@@ -1,0 +1,86 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+<div class="formArticle">
+    <div class="row">
+        <div class="col-xl-12 col-xxl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"></h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                        <div>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Nom Formateur</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.NomFormateur, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.NomFormateur, { 'attr': {'class': 'form-control' } })}}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Prenom Formateur</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.PrenomFormateur, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.PrenomFormateur, { 'attr': {'class': 'form-control' } })}}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Sexe</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.SexeFormateur, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.SexeFormateur) }}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Email</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.EmailFormateur, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.EmailFormateur) }}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Image</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.ImageFormateur, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.ImageFormateur) }}</li>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Numero Telephone</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.NumTelFormateur, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.NumTelFormateur) }}</li>
+                                        </div>
+                                    </div>
+                                    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+                                </div>
+                            </section>
+                            {{ form_end(form) }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="{{ path('app_session_back_index') }}">Precedent</a>

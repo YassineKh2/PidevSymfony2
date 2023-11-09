@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommantairePublication index{% endblock %}
+
+{% block body %}
+    <style>
+        .comm{
+            display: flex;
+            flex-direction: column;
+        }
+        .showcomm{
+            width: 50%;
+            margin-top: 200px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            column-gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .dcomm{
+            color: grey;
+        }
+        .actions{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <div class="showcomm">
+        <h1>Commentaires</h1>
+
+        <div>
+            {% for commantaire_publication in commantaire_publications %}
+                <div class="comm">
+                    <span>{{ commantaire_publication.User.getNom() }}</span>
+                    <div class="dcomm">{{ commantaire_publication.DateCommantaire ? commantaire_publication.DateCommantaire|date('Y-m-d') : '' }}</div>
+                    <div>{{ commantaire_publication.ContenuCommantaire }}</div>
+                    <hr>
+                    <div class="actions">
+
+                        <div><a href="{{ path('app_commantaire_publication_edit', {'id': commantaire_publication.id}) }}">edit</a></div>
+                        <div>{{ include('commantaire_publication/_delete_form.html.twig') }}</div>
+                    </div>
+                </div>
+                <hr>
+
+            {% endfor %}
+        </div>
+        <a href="{{ path('app_publication_index') }}">Retourner à la liste des publications</a>
+
+    </div>
+
+{% endblock %}

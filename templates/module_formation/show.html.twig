@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ModuleFormation{% endblock %}
+
+{% block body %}
+    <h1>ModuleFormation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ module_formation.id }}</td>
+            </tr>
+            <tr>
+                <th>NomFormation</th>
+                <td>{{ module_formation.NomFormation }}</td>
+            </tr>
+            <tr>
+                <th>PrerequisModule</th>
+                <td>{{ module_formation.PrerequisModule }}</td>
+            </tr>
+            <tr>
+                <th>DureeModule</th>
+                <td>{{ module_formation.DureeModule }}</td>
+            </tr>
+            <tr>
+                <th>ContenuModule</th>
+                <td>{{ module_formation.ContenuModule }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_module_formation_index') }}">back to list</a>
+
+    <a href="{{ path('app_module_formation_edit', {'id': module_formation.id}) }}">edit</a>
+
+    {{ include('module_formation/_delete_form.html.twig') }}
+{% endblock %}

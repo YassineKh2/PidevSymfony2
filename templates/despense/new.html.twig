@@ -1,0 +1,21 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New Despense{% endblock %}
+
+{% block body %}
+    <div class="newform">
+        <h1>Ajouter Despense</h1>
+
+        {{ include('despense/_form.html.twig') }}
+
+        <a href="{{ path('app_despense_index') }}"></a>
+    </div>
+    <style>
+        .newform{
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+    </style>
+{% endblock %}

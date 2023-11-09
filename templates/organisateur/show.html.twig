@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organisateur{% endblock %}
+
+{% block body %}
+    <h1>Organisateur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ organisateur.id }}</td>
+            </tr>
+            <tr>
+                <th>NomOrganisateur</th>
+                <td>{{ organisateur.NomOrganisateur }}</td>
+            </tr>
+            <tr>
+                <th>NumTelOrganisateur</th>
+                <td>{{ organisateur.NumTelOrganisateur }}</td>
+            </tr>
+            <tr>
+                <th>PourcentageRevenuOrganisateur</th>
+                <td>{{ organisateur.PourcentageRevenuOrganisateur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_organisateur_index') }}">back to list</a>
+
+    <a href="{{ path('app_organisateur_edit', {'id': organisateur.id}) }}">edit</a>
+
+    {{ include('organisateur/_delete_form.html.twig') }}
+{% endblock %}

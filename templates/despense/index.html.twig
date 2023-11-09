@@ -1,0 +1,126 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %} Despense Session{% endblock %}
+{% block body %}
+    <div class="tab">
+        <h1>Despense index</h1>
+
+
+            <div class="col-lg-12">
+                <div class="card">
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control bg-light border-0 rounded-pill" id="searchInput" placeholder="Search...">
+
+                            </div>
+                            <table class="table header-border table-hover verticle-middle">
+                                <a href="{{ path('app_despense_new') }}" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-plus-square "></i>
+                                    Créer Despense
+                                </a>
+
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Libelle</th>
+                                    <th scope="col">Montant</th>
+                                    <th scope="col">Reduction</th>
+
+                                    <th scope="col">Actions</th>
+
+
+                                </tr>
+                                </thead>
+
+
+
+
+
+
+                                <tbody>
+                                {% for despense in despenses %}
+                                <tr>
+                                    <th scope="col">{{ despense.id }}</th>
+                                    <th scope="col">{{ despense.LibelleDespense }}</th>
+                                    <th scope="col">{{ despense.MontantDespense }}</th>
+                                    <th scope="col">{{ despense.ReductionDespense }}%</th>
+
+
+                                    <th>
+                                <span><a href="{{ path('app_despense_edit', {'id': despense.id}) }}" class="mr-4" data-toggle="tooltip"
+                                         data-placement="top" title="Edit"><i
+                                                class="fa fa-pencil color-muted"></i></a>
+                                        {{ include('despense/_delete_form.html.twig') }}</th>
+                                    </span>
+
+                                    </th>
+
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+    </div>
+    <style>
+        .tab{
+
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+        .button_creer{
+
+
+            background: #ffffff;
+
+            position: relative;
+
+        }
+        .button_creer:hover{
+            height: 100%;
+border-radius: 3px;
+            background: #9c00ff;
+
+            position: relative;
+
+        }
+        .button_text{
+            color: #7a6666;
+        }
+        .button_text:hover{
+            color: #000000;
+        }
+
+    </style>
+
+    <script>
+        function filterTable() {
+            const filter = document.getElementById('searchInput').value.toUpperCase();
+            const rows = document.querySelectorAll('table tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i].querySelectorAll('th');
+                let visible = false;
+                for (let j = 0; j < cols.length; j++) {
+                    const cell = cols[j];
+                    if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                        visible = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = visible ? '' : 'none';
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+    </script>
+{% endblock %}
+

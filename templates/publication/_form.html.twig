@@ -1,0 +1,10 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+    {{form_widget(form.ContenuPublication)}}
+    {{ form_errors(form.ContenuPublication) }}
+    {{ form_widget(form.ImageForum) }}
+
+    {{ form_widget(form.Save) }}
+   
+{{ form_end(form) }}

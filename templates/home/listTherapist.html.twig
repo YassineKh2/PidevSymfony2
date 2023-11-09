@@ -1,0 +1,64 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    {% for u in user %}
+    {% if u.roles == ["ROLE_THERAPIST"] %}
+    <div style="margin-top: 100px;margin-left: 550px" class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom Therapist</th>
+                            <th>Email</th>
+                            <th>numero</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="round-img">
+                                    <a href=""><img width="35" src="{{ asset('/uploads/'~u.image) }}" alt=""></a>
+                                </div>
+                            </td>
+                            <td>{{u.nom}}-{{u.prenom}}</td>
+                            <td><span>{{u.email}}</span></td>
+                            <td><span>{{u.numero}}</span></td>
+
+
+
+        {% if u.approve != 1 %}
+            <td><a href="{{path('adminApprove',{'id':u.id})}}" class="badge badge-warning">Approve</a></td>
+        {% endif %}
+        {% if u.approve %}
+            <td><a href="" class="badge badge-success">Approved</a></td>
+        {% endif %}
+
+        {% if u.status != 1 %}
+            <td><a href="{{path('adminBan',{'id':u.id})}}" class="badge badge-warning">Ban</a></td>
+        {% endif %}
+        {% if u.status %}
+            <td><a href="{{path('adminBan',{'id':u.id})}}" class="badge badge-warning">Unban</a></td>
+        {% endif %}
+                            <td><a style="background-color: red" href="{{path('deleteAccount',{'id':u.id})}}" class="badge badge-success">Delete</a></td>
+
+            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+{% endblock %}

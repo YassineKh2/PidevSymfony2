@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formation{% endblock %}
+
+{% block body %}
+<h1>Formation</h1>
+<div class="breadcrumbs">
+    <div class="container">
+        <h2>Formations</h2>
+        <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+    </div>
+</div><!-- End Breadcrumbs -->
+
+<!-- ======= Courses Section ======= -->
+<section id="popular-courses" class="courses">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+
+            <h2>Formations</h2>
+
+
+
+        </div>
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                <div class="course-item">
+
+                    <img src="{{ asset(formation.ImageFormation)}}" class="img-fluid" alt="..." style="height:300px; width: 600px">
+                    <div class="course-content">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4><a href="{{ path('app_formation_show', {'id': formation.id}) }}">Voir</a></h4>
+                            <p class="price">$169</p>
+                        </div>
+
+                        <h3>{{formation.getNomFormation()}}</h3>
+                        <p>{{ formation.DescriptionFormation }}</p>
+                        <div class="trainer d-flex justify-content-between align-items-center">
+                            <div class="trainer-profile d-flex align-items-center">
+                                <img src="{{ asset(formation.Formateur.ImageFormateur)}}" class="img-fluid" alt="">
+                                <span>{{ formation.Formateur.getNomFormateur() }} {{ formations.Formateur.getPrenomFormateur() }}</span>
+                            </div>
+                            <div class="trainer-rank d-flex align-items-center">
+                                <i class="bx bx-user"></i>50
+
+                                <i class="bx bx-heart"></i>65
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section><!-- End Popular Courses Section -->
+
+
+{% endblock %}

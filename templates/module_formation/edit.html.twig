@@ -1,0 +1,24 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Edit Module Formation{% endblock %}
+
+{% block body %}
+<div class="editform">
+
+    <h1>Editer ModuleFormation</h1>
+
+    {{ include('module_formation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_module_formation_index') }}"></a>
+
+
+</div>
+    <style>
+        .editform{
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+    </style>
+{% endblock %}

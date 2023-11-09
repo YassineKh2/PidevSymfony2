@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommantairePublication{% endblock %}
+
+{% block body %}
+    <h1>CommantairePublication</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commantaire_publication.id }}</td>
+            </tr>
+            <tr>
+                <th>DateCommantaire</th>
+                <td>{{ commantaire_publication.DateCommantaire ? commantaire_publication.DateCommantaire|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ContenuCommantaire</th>
+                <td>{{ commantaire_publication.ContenuCommantaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commantaire_publication_index') }}">back to list</a>
+
+    <a  href="{{ path('app_commantaire_publication_edit', {'id': commantaire_publication.id}) }}">edit</a>
+
+    {{ include('commantaire_publication/_delete_form.html.twig') }}
+{% endblock %}

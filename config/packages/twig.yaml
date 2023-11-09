@@ -1,0 +1,10 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    paths:
+        'public/Front/formation/images': rr
+        'public/Back/images/CategorieImages': RR
+        'public': imagesShop
+
+when@test:
+    twig:
+        strict_variables: true

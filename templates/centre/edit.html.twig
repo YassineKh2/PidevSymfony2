@@ -1,0 +1,90 @@
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Modifer centre{% endblock %}</title>
+
+    {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+    <div class="formcentre">
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Modifer le centre</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                            <div>
+                                <section>
+                                    <div class="row">
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Le nom de centre</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.NomCentre, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.NomCentre, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Le numero de telephone </label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.CapaciteCentre, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.CapaciteCentre, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">Lenombre des blocs</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.NombreBlocCentre, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.NombreBlocCentre, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 mb-4">
+                                            <div class="form-group">
+                                                <label class="text-label">L'adresse'</label>
+                                                <div class="input-group">
+                                                    {{ form_widget(form.localisation, { 'attr': {'class': 'form-control' } })}}
+                                                </div>
+                                                <li class="text-danger">{{ form_errors(form.localisation, { 'attr': {'class': 'form-control' } })}}</li>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <button class="btn btn-primary mb-2">{{ button_label|default('Valider') }}</button>
+                                    <div>
+                                        <a href="{{ path('app_centre_index') }} " class="btn btn-primary mb-2">Annuler </a>
+                                    </div>
+                                </section>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+        <style>
+            .formcentre{
+                margin-top: 100px;
+                position: relative;
+                width: 800px;
+                left: 300px;
+            }
+        </style>
+    </div>
+    </div>
+{% endblock %}
+
+
+
+

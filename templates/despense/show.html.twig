@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Despense{% endblock %}
+
+{% block body %}
+    <h1>Despense</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ despense.id }}</td>
+            </tr>
+            <tr>
+                <th>LibelleDespense</th>
+                <td>{{ despense.LibelleDespense }}</td>
+            </tr>
+            <tr>
+                <th>MontantDespense</th>
+                <td>{{ despense.MontantDespense }}</td>
+            </tr>
+            <tr>
+                <th>ReductionDespense</th>
+                <td>{{ despense.ReductionDespense }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_despense_index') }}">back to list</a>
+
+    <a href="{{ path('app_despense_edit', {'id': despense.id}) }}">edit</a>
+
+    {{ include('despense/_delete_form.html.twig') }}
+{% endblock %}

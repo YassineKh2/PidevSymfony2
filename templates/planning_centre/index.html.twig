@@ -1,0 +1,104 @@
+{% extends 'baseBack.html.twig' %}
+{% block body %}
+<div class="content-body">
+    <!-- row -->
+    <div class="tab">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                            <h4 class="card-title">les plans disponibles</h4>
+
+                            <a href="{{ path('app_planning_centre_new') }}"  class="btn btn-primary mb-2">Ajouter</a>
+
+                        </div>
+                    <thead>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search&hellip;">
+                        <table class="table table-bordered table-striped verticle-right table-responsive-sm table-hover">
+
+
+                            <tr>
+
+                                <th >ID</th>
+                                <th >Titre</th>
+                                <th >Date début du plan</th>
+                                <th >Date fin du plan</th>
+                                <th>Description</th>
+                                <th >Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for planning_centre in planning_centres %}
+                                <tr href="{{ path('app_planning_centre_show', {'id': planning_centre.id}) }}">
+                                    <td>{{ planning_centre.id }}</td>
+                                    <td>{{ planning_centre.Titre  }}</td>
+                                    <td>{{ planning_centre.DateDebutPlanning ? planning_centre.DateDebutPlanning|date('Y-m-d') : '' }}</td>
+                                    <td>{{ planning_centre.DateFinPlanning ? planning_centre.DateFinPlanning|date('Y-m-d') : '' }}</td>
+                                    <td>{{ planning_centre.Description }}</td>
+                                    <td width="5%"><span>
+                                            <a class="fa fa-eye" style="display:flex;" aria-hidden="true" href="{{ path('app_planning_centre_show', {'id': planning_centre.id}) }}"></a>
+                                            <a href="{{ path('app_planning_centre_edit', {'id': planning_centre.id}) }}" class="mr-4" data-toggle="tooltip"
+                                                            data-placement="top" title="Modifer"><i
+                                                        class="fa fa-pencil color-muted"></i> </a>
+                                        <form method="post" action="{{ path('app_planning_centre_delete', {'id': planning_centre.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément');">
+                                        <button href="{{ path('app_planning_centre_delete', {'id': planning_centre.id}) }}" title="Supprimer" class="fa fa-trash-o color-danger border-0" >
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ planning_centre.id) }}">
+                                            </button>
+
+                                        </form>
+                            </span>
+
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <td></td>
+                                <td>
+                                    I'll n'a pas des plans
+                                </td>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .tab{
+
+                width: 1500px;
+                position: relative;
+                margin-top: 100px;
+                left: 50px;
+            }
+            button:hover{
+                color: red;
+            }
+
+
+        </style>
+
+</div>
+</div>
+    <script>
+        function filterTable() {
+            const filter = document.getElementById('searchInput').value.toUpperCase();
+            const rows = document.querySelectorAll('table tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i].querySelectorAll('td');
+                let visible = false;
+                for (let j = 0; j < cols.length; j++) {
+                    const cell = cols[j];
+                    if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                        visible = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = visible ? '' : 'none';
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+    </script>
+    {% endblock %}
+
+

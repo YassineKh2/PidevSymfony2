@@ -1,0 +1,350 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% block title %} Formation info{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+        <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+        <meta name="author" content="FREEHTML5.CO" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@2.2.1/dist/axentix.min.css">
+
+
+        <!--
+          //////////////////////////////////////////////////////
+
+          FREE HTML5 TEMPLATE
+          DESIGNED & DEVELOPED by FREEHTML5.CO
+
+          Website: 		http://freehtml5.co/
+          Email: 			info@freehtml5.co
+          Twitter: 		http://twitter.com/fh5co
+          Facebook: 		https://www.facebook.com/fh5co
+
+          //////////////////////////////////////////////////////
+           -->
+
+        <!-- Facebook and Twitter integration -->
+        <meta property="og:title" content=""/>
+        <meta property="og:image" content=""/>
+        <meta property="og:url" content=""/>
+        <meta property="og:site_name" content=""/>
+        <meta property="og:description" content=""/>
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:image" content="" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:card" content="" />
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'> -->
+
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/animate.css')}}">
+        <!-- Icomoon Icon Fonts-->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/icomoon.css')}}">
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/bootstrap.css')}}">
+        <!-- Superfish -->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/superfish.css')}}">
+        <!-- Magnific Popup -->
+        <link rel="stylesheet" href="{{ asset('Front/module/css/magnific-popup.css')}}">
+
+        <link rel="stylesheet" href="{{ asset('Front/module/style.css')}}">
+
+
+        <!-- Modernizr JS -->
+        <script src="{{ asset('Front/module/js/modernizr-2.6.2.min.js')}}"></script>
+    <body id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+            <h2>Detail Formations</h2>
+            <p>{{ formation.DescriptionFormation }}</p>
+            <br>
+            <button class="btn primary rounded-1" data-target="modal-example" style="background-color: rgba(103,248,217,0.85)">Contacter le Formateur</button>
+        </div>
+
+    </div>
+    <div class="modal shadow-1 white rounded-3" id="modal-example" data-ax="modal" >
+        <div class="modal-header">
+            Contacter Le Formateur
+        </div>
+        {{ form_start(formContact)}}
+        <div class="modal-content">
+            {{ form_widget(formContact.title) }}
+            {{ form_row(formContact.email) }}
+            {{ form_row(formContact.message) }}
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary mb-2">{{ button_label|default('Envoyer') }}</button>
+        </div>
+        {{ form_end(formContact) }}
+    </div>
+
+    <!-- End Breadcrumbs -->
+
+    <!-- ======= Cource Details Section ======= -->
+    <section id="course-details" class="course-details">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+
+                <div class="col-lg-8">
+                    <img src="{{  asset(formation.getImageFormation())}}" class="img-fluid" alt="" style="height: 250px; width: 90vh;border-radius: 10px">
+                    <h3>Modules et PrereQuis</h3>
+                    <div class="ag-offer-block">
+                        <section style="width: 1500px;display: flex;flex-wrap: wrap;">
+                        {% for module in formation.moduleFormations %}
+                        <section style="display: inline-block;width: 30%; /* Adjust this value to your preference */margin: 10px;">
+
+                            <div class="ag-format-container" >
+                                <ul class="ag-offer_list">
+                                    <li class="ag-offer_item" >
+                                        <div class="ag-offer_visible-item">
+                                            <div class="ag-offer_img-box">
+                                                <img src="{{asset('Front/module/images/icons8-module-100.png')}}" alt="" />
+                                            </div>
+                                            <div class="ag-offer_title">
+                                                {{ module.NomModule }}
+                                            </div>
+                                        </div>
+                                        <div class="ag-offer_hidden-item" >
+                                            <h6 style="text-align: center">{{ module.PrerequisModule }}</h6>
+                                            <p class="ag-offer_text">
+                                                {{ module.ContenuModule }}
+                                            </p>
+                                            <br>
+                                            <p style="text-align: center;margin-right: 5px">Duree: {{ module.DureeModule }}</p>
+                                        </div>
+
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </section>
+                        {% endfor %}
+                        </section>
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-4">
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Tutor</h5>
+                        <p>{{ formation.getFormateur().getNomFormateur()}}</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Niveau</h5>
+                        <p>{{ formation.getNiveauFormation() }}</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>Nombre Participants</h5>
+                        <p>{{ formation.participantsUser.count() }}</p>
+                    </div>
+                    <a class="btn primary rounded-1" style="background-color: rgba(103,248,217,0.85)" href="{{ path('app_formation_joindre',{'id':formation.id}) }}">Joindre Formation</a>
+                    <form action="" method="post">
+
+                        <div class="stars">
+                            <i class="lar la-star" data-value="1"></i><i class="lar la-star" data-value="2"></i><i class="lar la-star" data-value="3"></i><i class="lar la-star" data-value="4"></i><i class="lar la-star" data-value="5"></i>
+                        </div>
+                        <input type="hidden" name="note" id="note" value="0">
+
+                    </form>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    {% for message in app.flashes('message') %}
+        <div class="p-3 my-2 rounded-1 blue light-4 text-blue text-dark-3 bd-solid bd-blue bd-light-1 bd-1">{{ message }}</div>
+    {% endfor %}
+
+    </body>
+
+
+    <script src="{{ asset('Front/module/js/jquery.min.js')}}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{ asset('Front/module/js/jquery.easing.1.3.js')}}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('Front/module/js/bootstrap.min.js')}}"></script>
+    <!-- Waypoints -->
+    <script src="{{ asset('Front/module/js/jquery.waypoints.min.js')}}"></script>
+    <script src="{{ asset('Front/module/js/sticky.js')}}"></script>
+
+    <!-- Stellar -->
+    <script src="{{ asset('Front/module/js/jquery.stellar.min.js')}}"></script>
+    <!-- Superfish -->
+    <script src="{{ asset('Front/module/js/hoverIntent.js')}}"></script>
+    <script src="{{ asset('Front/module/js/superfish.js')}}"></script>
+    <!-- Magnific Popup -->
+    <script src="{{ asset('Front/module/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{ asset('Front/module/js/magnific-popup-options.js')}}"></script>
+
+    <!-- Main JS -->
+    <script src="{{ asset('Front/module/js/main.js')}}"></script>
+    <script src="{{ asset('Front/module/script.js')}}"></script>
+    <script>
+        window.onload = () => {
+            // On va chercher toutes les étoiles
+            const stars = document.querySelectorAll(".la-star");
+
+            // On va chercher l'input
+            const note = document.querySelector("#note");
+
+            // On boucle sur les étoiles pour le ajouter des écouteurs d'évènements
+            for(star of stars){
+                // On écoute le survol
+                star.addEventListener("mouseover", function(){
+                    resetStars();
+                    this.style.color = "#4daea7";
+                    this.classList.add("las");
+                    this.classList.remove("lar");
+                    // L'élément précédent dans le DOM (de même niveau, balise soeur)
+                    let previousStar = this.previousElementSibling;
+
+                    while(previousStar){
+                        // On passe l'étoile qui précède en rouge
+                        previousStar.style.color = "#4daea7";
+                        previousStar.classList.add("las");
+                        previousStar.classList.remove("lar");
+                        // On récupère l'étoile qui la précède
+                        previousStar = previousStar.previousElementSibling;
+                    }
+                });
+
+                // On écoute le clic
+                star.addEventListener("click", function(){
+                    note.value = this.dataset.value;
+                });
+
+                star.addEventListener("mouseout", function(){
+                    resetStars(note.value);
+                });
+            }
+
+            /**
+             * Reset des étoiles en vérifiant la note dans l'input caché
+             * @param {number} note
+             */
+            function resetStars(note = 0){
+                for(star of stars){
+                    if(star.dataset.value > note){
+                        star.style.color = "black";
+                        star.classList.add("lar");
+                        star.classList.remove("las");
+                    }else{
+                        star.style.color = "#4daea7";
+                        star.classList.add("las");
+                        star.classList.remove("lar");
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script>
+        window.onload = () => {
+            document.querySelector("#contact_formateur_title").value = {{ formation.NomFormation }};
+
+
+        }
+        // With options
+        let modal = new Axentix.Modal('#modal-example', {
+            overlay: false,
+            animationDuration: 500
+        });
+    </script>
+    <!-- Axentix JS minified version -->
+    <script src="https://cdn.jsdelivr.net/npm/axentix@2.2.1/dist/axentix.min.js"></script>
+
+
+        <style>
+            /* Modal styles */
+
+        .modal {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+            color: #000;
+            max-width: 800px;
+            padding: 20px;
+
+        }
+
+        .modal-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal input[type="text"],
+        .modal input[type="email"],
+        .modal textarea {
+            background-color: transparent;
+            border: none;
+            border-bottom: 2px solid rgba(176, 178, 176, 0.85);
+            color: #000;
+            font-size: 16px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .modal input[type="text"]:focus,
+        .modal input[type="email"]:focus,
+        .modal textarea:focus {
+            outline: none;
+            border-bottom-color: rgba(103,248,217,1);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn-primary {
+            background-color: rgba(103,248,217,0.85);
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(103,248,217,1);
+            color: #fff;
+        }
+    </style>
+
+
+
+
+
+{% endblock %}

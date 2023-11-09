@@ -1,0 +1,78 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New PlanningCentre{% endblock %}
+
+{% block body %}
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Planning Centre</h4>
+                        <br><br><br>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            {{ form_start(form,{'attr':{'novalidate':'novalidate'}},{'attr':{'class':'forms-sample'}}) }}
+                            <div class="form-group row">
+                                {{form_label(form.DateDebutPlanning,"Date début du plan :")}}
+                                <div class="col-sm-9">
+                                    {{form_widget(form.DateDebutPlanning,{'attr':{'class':'form-control'}})}}
+                                    {% if form_errors(form.DateDebutPlanning) is not empty %}
+                                    <li class="text-danger">   <p class="form-text text-muted">{{ form_errors(form.DateDebutPlanning) }}</p> </li>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{form_label(form.DateFinPlanning,"Date fin du plan :")}}
+                                <div class="col-sm-9">
+                                    {{form_widget(form.DateFinPlanning,{'attr':{'class':'form-control'}})}}
+                                    {% if form_errors(form.DateFinPlanning) is not empty %}
+                                    <li class="text-danger">   <p class="form-text text-muted">{{ form_errors(form.DateFinPlanning) }}</p> </li>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{form_label(form.Description,"Description :")}}
+                                <div class="col-sm-9">
+                                    {{form_widget(form.Description,{'attr':{'class':'form-control'}})}}
+                                    {% if form_errors(form.Description) is not empty %}
+                                    <li class="text-danger">   <p class="form-text text-muted">{{ form_errors(form.Description) }}</p> </li>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{form_label(form.Titre,"Titre :")}}
+                                <div class="col-sm-9">
+                                    {{form_widget(form.Titre,{'attr':{'class':'form-control'}})}}
+                                    {% if form_errors(form.Titre) is not empty %}
+                                    <li class="text-danger">  <p class="form-text text-muted">{{ form_errors(form.Titre) }}</p> </li>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                {{form_label(form.Centre,"Centre :")}}
+                                <div class="col-sm-9">
+                                    {{form_widget(form.Centre,{'attr':{'class':'form-control'}})}}
+                                    {% if form_errors(form.Centre) is not empty %}
+                                    <li class="text-danger">  <p class="form-text text-muted">{{ form_errors(form.Centre) }}</p> </li>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div align="center" class="card-footer">
+                                <button class="btn btn-primary mr-2">{{ button_label|default('Enregistrer') }}</button>
+                                <button class="btn btn-primary mr-2"><a href="{{ path('app_planning_centre_index') }}">Retour</a></button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

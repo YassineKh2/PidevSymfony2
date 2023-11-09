@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+    <div class="formadresse">
+        <div class="row">
+            <div class="col-xl-12 col-xxl-12">
+                <div  style="margin-left: 350px" class="card">
+                    <div class="card-header">
+                        <h4 style="margin-left: 250px" class="card-title">Sign Up</h4>
+                    </div>
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+                    <div class="card-body">
+                        <form  action="#" id="step-form-horizontal" class="step-form-horizontal" method="post">
+                            <div>
+                                <section>
+                                    <div class="row">
+                                              <div class="form-group">
+
+                                        <input style="width: 250px;margin-left: 180px;margin-bottom: 10px" type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Email" required autofocus>
+                                        <input style="width: 250px;margin-left: 180px;margin-bottom: 10px"type="password" name="password" id="inputPassword" class="form-control" placeholder="Mot De Passe" autocomplete="current-password" required>
+
+                                        <input  type="hidden" name="_csrf_token"
+                                               value="{{ csrf_token('authenticate') }}"
+                                        >
+
+
+                                        <button style="width: 110px;margin-left: 180px"class="btn btn-lg btn-primary" type="submit">
+                                            Sign in
+                                        </button>
+                                                  <a href="{{ path('resetPassword') }}">forget password? </a>
+                                              </div>
+                                        <div style="margin-left: 170px;margin-top: 20px">pas de compte?<a href="{{ path('app_register') }}">register now </a></div>
+                                    </div>
+
+                                </section>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .formadresse {
+            position: center;
+            margin-top: 100px;
+            margin-left: 90px;
+            width:1000px;
+        }
+
+        .card-header{
+            background-color:#4daea7 ;
+        }
+        body{
+            background: url("Front/img/wood.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+    </style>
+
+
+
+
+
+
+
+{% endblock %}

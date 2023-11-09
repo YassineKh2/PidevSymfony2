@@ -1,0 +1,74 @@
+<div class="card">
+    <div class="card-body">
+        {{ form_start(form,{'attr':{'novalidate':'novalidate'}},{'attr':{'class':'forms-sample'}}) }}
+        <div class="form-group row">
+            {{form_label(form.JourActivite,"Le jour de l'activité :")}}
+            <div class="col-sm-9">
+                {{form_widget(form.JourActivite,{'attr':{'class':'form-control'}})}}
+                {% if form_errors(form.JourActivite) is not empty %}
+                    <p class="form-text text-muted">{{ form_errors(form.DateDebutPlanning) }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.NomActivite,"Nom d'activité :")}}
+            <div class="col-sm-9">
+                {{form_widget(form.NomActivite,{'attr':{'class':'form-control'}})}}
+                {% if form_errors(form.NomActivite) is not empty %}
+                    <p class="form-text text-muted">{{ form_errors(form.DateFinPlanning) }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.ContenuActivite,"Contenu d'activite :")}}
+            <div class="col-sm-9">
+                {{form_widget(form.ContenuActivite,{'attr':{'class':'form-control'}})}}
+                {% if form_errors(form.ContenuActivite) is not empty %}
+                    <p class="form-text text-muted">{{ form_errors(form.Description) }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.HeureDebutActivite,"Heure debut d'activite :")}}
+            <div class="col-sm-9">
+                {{form_widget(form.HeureDebutActivite,{'attr':{'class':'form-control'}})}}
+                {% if form_errors(form.HeureDebutActivite) is not empty %}
+                    <p class="form-text text-muted">{{ form_errors(form.Titre) }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.HeureFinActivite,"Heure fin d'activite :")}}
+            <div class="col-sm-9">
+                {{form_widget(form.HeureFinActivite,{'attr':{'class':'form-control'}})}}
+                {% if form_errors(form.HeureFinActivite) is not empty %}
+                    <p class="form-text text-muted">{{ form_errors(form.Centre) }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        {{form_label(form.HeureFinActivite,"Nombre maximale des participants :")}}
+        <div class="col-sm-9">
+            {{form_widget(form.NombreParticipantActiviteMax,{'attr':{'class':'form-control'}})}}
+            {% if form_errors(form.NombreParticipantActiviteMax) is not empty %}
+                <p class="form-text text-muted">{{ form_errors(form.Centre) }}</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="form-group row">
+        {{form_label(form.Planning,"Plan :")}}
+        <div class="col-sm-9">
+            {{form_widget(form.Planning,{'attr':{'class':'form-control'}})}}
+            {% if form_errors(form.Planning) is not empty %}
+                <p class="form-text text-muted">{{ form_errors(form.Centre) }}</p>
+            {% endif %}
+        </div>
+    </div>
+        <div align="center" class="card-footer">
+            <button class="btn btn-primary mr-2">{{ button_label|default('Save') }}</button>
+            <button class="btn btn-primary mr-2"><a href="{{ path('app_activite_centre_index') }}">Back To List</a></button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

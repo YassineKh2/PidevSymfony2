@@ -1,0 +1,183 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Session index{% endblock %}
+
+{% block body %}
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{asset('Front/session/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{asset('Front/session/assets/css/fontawesome.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/session/assets/css/templatemo-space-dynamic.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/session/assets/css/animated.css')}}">
+    <link rel="stylesheet" href="{{asset('Front/session/assets/css/owl.css')}}">
+    <!--
+
+    TemplateMo 562 Space Dynamic
+
+    https://templatemo.com/tm-562-space-dynamic
+
+    -->
+</head>
+
+<div id="blog" class="our-blog section">
+    <div class="searchbar">
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+        <div class="input-group mb-3">
+                                <span class="search-input"> {{ form_widget(form.search, { 'attr': {'class': 'form-control search-input', 'placeholder': 'Search'} })}}
+                                </span>
+            <div class="input-group-append">
+                <button class="btn btn-primary search-btn" type="submit">{{ button_label|default('Search') }}</button>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.25s">
+                <div class="section-heading">
+                    <h2>Explorer <em>Tendance</em> notre dernière <span>Session</span></h2>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.25s">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.25s">
+                <div class="left-image">
+                    <a href="{{ path('app_session_show', {'id': firstSession.id}) }}"><img src="{{  asset(firstSession.ImageSession)}}" alt="Workspace Desktop" style="padding-bottom: 5px"></a>
+                    <div class="info" style="padding-bottom: 80px">
+                        <div class="inner-content">
+                            <ul>
+                                <li><i class="fa fa-calendar"></i> {{ firstSession.DateDebutSession |date("m/d/Y")}}</li>
+                                <li><i class="fa fa-users"></i>{{ firstSession.NombreParticipantSession}}</li>
+                                <li><i class="fa fa-folder"></i> Tendance</li>
+                            </ul>
+                            <a href="{{ path('app_session_show', {'id': firstSession.id}) }}"><h4>{{  firstSession.getNomSession()}}</h4></a>
+                            <p>{{ firstSession.getDescriptionSession()|slice(0,30)}}...</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.25s" >
+                <div class="right-list">
+                    <ul>
+                        {% for session in sessions %}
+                        <li>
+                            <div class="left-content align-self-center">
+                                <span><i class="fa fa-calendar"></i> {{ session.DateDebutSession |date("m/d/Y")}}</span>
+                                <a href="{{ path('app_session_show', {'id': session.id}) }}"><h4>{{ session.NomSession }}</h4></a>
+                                <p>{{ session.getDescriptionSession()|slice(0,10)}}...</p>
+                            </div>
+                            <div class="right-image">
+                                <a href="{{ path('app_session_show', {'id': session.id}) }}"><img src="{{ asset(session.ImageSession) }}" alt=""></a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pagination">
+    <!-- End Popular Courses Section -->
+    {{ knp_pagination_render(sessions) }}
+</div>
+<style>
+    .searchbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+    }
+    .search-input {
+        border: none;
+        border-radius: 20px;
+        background-color: #f1f1f1;
+        color: #333;
+        padding: 12px 20px;
+        box-shadow: none;
+
+    }
+
+    .search-input:focus {
+        box-shadow: none;
+        outline: none;
+    }
+
+    .search-btn {
+        border: none;
+        border-radius: 20px;
+        background-color: #4daea7;
+        color: #fff;
+        padding: 12px 20px;
+        transition: all 0.3s ease;
+        height: 70px;
+        box-shadow: none;
+    }
+
+    .search-btn:hover {
+        background-color: #4daea7;
+        transform: translateY(-2px);
+    }
+
+    .search-btn:focus {
+        box-shadow: none;
+        outline: none;
+    }
+</style>
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .pagination a,
+    .pagination span {
+        padding: 5px 10px;
+        margin: 0 5px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #4daea7;
+        border: 1px solid #4daea7;
+    }
+
+    .pagination .active a,
+    .pagination a:hover {
+        background-color: #4daea7;
+        color: #4daea7;
+        border-color: #4daea7;
+    }
+</style>
+
+<!-- Scripts -->
+<script src="{{asset('Front/session/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('Front/session/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('Front/session/assets/js/owl-carousel.js')}}"></script>
+<script src="{{asset('Front/session/assets/js/animation.js')}}"></script>
+<script src="{{asset('Front/session/assets/js/imagesloaded.js')}}"></script>
+<script src="{{asset('Front/session/assets/js/templatemo-custom.js')}}"></script>
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block body %}
+    <title>{% block title %}Categories{% endblock %}</title>
+
+    <div class="tab">
+    <div class="card">
+        {{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+                    {{ form_widget(form.Recherche, { 'attr': {'class': 'form-control' } })}}
+                      <button class="btn btn-primary mb-2">{{ button_label|default('Rechercher') }}</button>
+
+        {{ form_end(form) }}
+        <div class="card-body">
+            <a class="btn btn-primary mb-2" href="{{ path("app_index_MakeExcelCategorie") }}">Excel</a>
+            <div class="table-responsive">
+                <div class="card-header">
+                    <h4 class="card-title">Categorie</h4>
+
+                    <a href="{{ path('app_categorie_new') }}"  class="btn btn-primary mb-2">Ajouter</a>
+
+                </div>
+
+                <table class="table table-bordered table-striped verticle-right table-responsive-sm table-hover">
+
+                    <thead>
+                    <tr>
+
+                        <th >ID</th>
+                        <th >Nom</th>
+                        <th >Image</th>
+                        <th >Nombre d'article</th>
+                        <th >Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for categorie in categories %}
+                    <tr href="{{ path('app_categorie_show', {'id': categorie.id}) }}">
+                        <td>{{ categorie.id }}</td>
+                        <td>{{ categorie.NomCategorie }}</td>
+                        <td><img src="{{ asset(categorie.ImageCategorie) }}" width="100" height="100"  class="rounded-corners"></td>
+                        <td>{{ categorie.getArticles().count() }}</td>
+                        <td width="5%"><span><a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}" class="mr-4" data-toggle="tooltip"
+                                     data-placement="top" title="Modifer"><i
+                                            class="fa fa-pencil color-muted"></i> </a>
+                                        <form method="post" action="{{ path('app_categorie_delete', {'id': categorie.id}) }}" onsubmit="return confirm('Êtes-vous sûr de bien vouloir supprimer cet élément');">
+                                        <button href="{{ path('app_categorie_delete', {'id': categorie.id}) }}" title="Supprimer" class="fa fa-trash-o color-danger border-0" >
+                                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie.id) }}">
+                                            </button>
+                                        </form>
+                            </span>
+
+                        </td>
+                    </tr>
+                    {% else %}
+                        <td></td>
+                        <td>
+                        I'll n'a pas de categorie
+                        </td>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+    <style>
+      .tab{
+
+         width: 1300px;
+          position: relative;
+          margin-top: 200px;
+          left: 400px;
+      }
+      button:hover{
+         color: red;
+      }
+      .rounded-corners{
+          border-radius: 10%;
+      }
+
+
+    </style>
+
+{% endblock %}

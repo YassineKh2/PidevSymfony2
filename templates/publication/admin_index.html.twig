@@ -1,0 +1,61 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}List des publications{% endblock %}
+
+{% block body %}
+    <style>
+        .forum{
+            width: 50%;
+            margin-top: 153px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            column-gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .post{
+            border-bottom: 1px;
+            border-bottom-color: #0b0b0b;
+        }
+        .hpost{
+            display: flex;
+            flex-direction: column;
+        }
+        .dpost{
+            color: grey;
+        }
+
+    </style>
+    <div class="forum" >
+        <div>
+            <h1>Liste des publications</h1>
+            {% for publication in publications %}
+                <div class="post">
+                    <div class="hpost" >
+                        <span>{{ publication.User.nom }}</span>
+                        <span class="dpost">{{ publication.DatePublication ? publication.DatePublication|date('Y-m-d') : '' }}</span>
+                    </div>
+                    <div>
+                        <div>{{ publication.ContenuPublication }}</div>
+                        {% if publication.ImageForum %}
+                            <img class="rounded" src="{{ asset(publication.ImageForum) }}" width="500" alt="Publication image">
+                        {% endif %}
+                        <div>
+                            <a href="{{ path('admin_publication_show', {'id': publication.id}) }}">show</a>
+                            <a href="{{ path('adminshowcommentsforonepub', {'id': publication.id}) }}">voir les commentaires</a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+
+
+
+{% endblock %}

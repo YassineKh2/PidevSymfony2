@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-body">
+        {{ form_start(form,{'attr':{'novalidate':'novalidate'}},{'attr':{'class':'forms-sample'}}) }}
+        <div class="form-group row">
+            {{form_label(form.NomCentre,"Le nom de centre :")}}
+            <div class="col-sm-9">
+                {{form_widget(form.NomCentre,{'attr':{'class':'form-control'}})}}
+                {% if form_errors(form.NomCentre) is not empty %}
+                    <p class="form-text text-muted">{{ form_errors(form.NomCentre) }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.CapaciteCentre,"Capacité de centre:")}}
+            <div class="col-sm-9">
+                {{form_widget(form.CapaciteCentre,{'attr':{'class':'form-control'}})}}
+                {% if form_errors(form.CapaciteCentre) is not empty %}
+                    <p class="form-text text-muted">{{ form_errors(form.CapaciteCentre) }}</p>
+                {% endif %}
+            </div>
+            <div class="form-group row">
+                {{form_label(form.localisation,"Capacité de centre:")}}
+                <div class="col-sm-9">
+                    {{form_widget(form.localisation,{'attr':{'class':'form-control'}})}}
+                    {% if form_errors(form.localisation) is not empty %}
+                        <p class="form-text text-muted">{{ form_errors(form.localisation) }}</p>
+                    {% endif %}
+                </div>
+        </div>
+        <div class="form-group row">
+            {{form_label(form.NombreBlocCentre,"Nombre  des blocs :")}}
+            <div class="col-sm-9">
+                {{form_widget(form.NombreBlocCentre,{'attr':{'class':'form-control'}})}}
+                {% if form_errors(form.NombreBlocCentre) is not empty %}
+                    <p class="form-text text-muted">{{ form_errors(form.NombreBlocCentre) }}</p>
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+</div>
+
+<div align="center" class="card-footer">
+    <button class="btn btn-primary mr-2">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-primary mr-2"><a href="{{ path('app_centre_index') }}">Back To List</a></button>
+</div>
+{{ form_end(form) }}
+</div>
+</div>
+

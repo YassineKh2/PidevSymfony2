@@ -1,0 +1,105 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+
+<div class="formArticle">
+    <div class="row">
+        <div class="col-xl-12 col-xxl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title"></h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" id="step-form-horizontal" class="step-form-horizontal">
+                        <div>
+                            <section>
+                                <div class="row">
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Nombre Participants Max</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.NombreParticipantSession, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.NombreParticipantSession, { 'attr': {'class': 'form-control' } })}}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Difficulte</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.Difficulte, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.Difficulte, { 'attr': {'class': 'form-control' } })}}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">DescriptionSession</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.DescriptionSession, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.DescriptionSession) }}</li>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Nom Session</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.NomSession, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.NomSession) }}</li>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Despense</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.Despense, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.Despense) }}</li>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Image</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.ImageSession, { 'attr': {'class': 'form-control' } })}}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.ImageSession) }}</li>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Date Debut</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.DateDebutSession, {'attr': {'class': 'datepicker'}}) }}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.DateDebutSession) }}</li>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mb-4">
+                                        <div class="form-group">
+                                            <label class="text-label">Date Debut</label>
+                                            <div class="input-group">
+                                                {{ form_widget(form.DateFinSession, {'attr': {'class': 'datepicker'}}) }}
+                                            </div>
+                                            <li class="text-danger">{{ form_errors(form.DateFinSession) }}</li>
+                                        </div>
+                                    </div>
+
+
+                                    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+                                </div>
+                            </section>
+                            {{ form_end(form) }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <a href="{{ path('app_session_back_index') }}">Precedent</a>

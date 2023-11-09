@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Article</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>NomArticle</th>
+                <td>{{ article.NomArticle }}</td>
+            </tr>
+            <tr>
+                <th>PrixArticle</th>
+                <td>{{ article.PrixArticle }}</td>
+            </tr>
+            <tr>
+                <th>QuantiteArticle</th>
+                <td>{{ article.QuantiteArticle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_article_index') }}">back to list</a>
+
+    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+
+    {{ include('article/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,49 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+    h6 {
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+        display: block;
+        margin: 20px auto;
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    /* Media queries for responsive design */
+    @media only screen and (max-width: 480px) {
+        h1 {
+            font-size: 24px;
+        }
+    }
+</style>
+
+<div style="width: 600px; margin: 0 auto;">
+    <img src="{{ email.image("@rr/logo-no-background.png")}}" alt="Logo" style="height: 80px;">
+    <h1>Contact au sujet de votre Formation "{{ formation.NomFormation }}"</h1>
+    <h6>De : {{ mail }}</h6>
+    <h6>A : {{ emailFr }}</h6>
+    <h6>Message :</h6>
+    {{ message|raw }}
+    <img src="{{ email.image("@rr/A-Huge-Thank-You-compress.jpeg")}}" alt="Thank you" style="height: 500px;">
+</div>

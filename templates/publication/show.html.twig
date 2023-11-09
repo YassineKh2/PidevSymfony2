@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Publication{% endblock %}
+
+{% block body %}
+    <style>
+        .pub{
+            width: 50%;
+            margin-top: 153px;
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            column-gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .post{
+            border-bottom: 1px;
+            border-bottom-color: #0b0b0b;
+        }
+        .hpost{
+            display: flex;
+            flex-direction: column;
+        }
+        .dpost{
+            color: grey;
+        }
+
+    </style>
+    <div class="pub">
+        <h1>Publication</h1>
+
+
+        <div class="post">
+            <div class="hpost" >
+                <span>{{ publication.User.nom }}</span>
+                <span class="dpost">{{ publication.DatePublication ? publication.DatePublication|date('Y-m-d') : '' }}</span>
+            </div>
+            <div>
+                <div>{{ publication.ContenuPublication }}</div>
+                {% if publication.ImageForum %}
+                    <img class="rounded" class="rounded" src="{{ asset(publication.ImageForum) }}" width="500"  alt="Publication image">
+                {% endif %}
+                <div>
+
+                    <a href="{{ path('app_publication_edit', {'id': publication.id}) }}">edit</a>
+                    <a href="{{ path('showcommentsforonepub', {'id': publication.id}) }}">voir les commentaires</a>
+                    <a href="{{ path('app_commantaire_publication_new', {'id': publication.id}) }}">Ajouter un commentaire</a>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+
+{% endblock %}

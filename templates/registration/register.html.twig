@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+
+    {{ form_start(registrationForm,{'attr': {'novalidate': 'novalidate'}} ) }}
+            <div class="formadresse">
+                <div class="row">
+                    <div style="margin-left: 260px" class="col-8">
+                        <div  class="card">
+                            <div class="card-header">
+                                <h4  class="card-title">Register</h4>
+                            </div>
+                            <div class="card-body">
+                                <form  action="#" id="step-form-horizontal" class="step-form-horizontal">
+                                    <div>
+                                        <section>
+                                            <div class="row">
+
+
+
+                                                                {{ form_label(registrationForm.roles ,'Signup as' ) }}
+
+
+                                                                {{ form_widget(registrationForm.roles ,{'attr':{'class':'btn btn-primary mb-2'}} ) }}
+
+
+
+
+                                                        <div style="width: 400px;margin-left: 100px" >
+                                                            {{ form_row(registrationForm.nom ,{ 'attr': {'class': 'form-control' } }) }}
+                                                        </div>
+
+
+                                                        <div style="width: 400px;margin-left: 100px" >
+                                                            {{ form_row(registrationForm.prenom ,{ 'attr': {'class': 'form-control' } }) }}
+                                                        </div>
+
+
+                                                        <div style="width: 400px;margin-left: 100px" >
+                                                            {{ form_row(registrationForm.image ,{ 'attr': {'class': 'form-control' } }) }}
+                                                        </div>
+
+
+                                                        <div style="width: 400px;margin-left: 100px"  >
+                                                            {{ form_row(registrationForm.numero ,{ 'attr': {'class': 'form-control' } }) }}
+                                                        </div>
+
+                                                        <div style="width: 400px;margin-left: 100px" >
+                                                            {{ form_row(registrationForm.email ,{ 'attr': {'class': 'form-control' } }) }}
+                                                        </div>
+
+                                                        <div style="width: 400px;margin-left: 100px" >
+                                                            {{ form_row(registrationForm.plainPassword, { 'attr': {'class': 'form-control' } }) }}
+                                                        </div>
+                                                   <div style="width: 400px;margin-left: 100px;margin-top: 10px">
+                                                        {{ form_row(registrationForm.agreeTerms ) }}
+                                                            <button style="margin-top: 10px" class="btn btn-primary mb-2"  >register</button>
+                                                    </div>
+                                                </div>
+                                        <div style="margin-left: 170px;margin-top: 20px">vous avez un compte<a href="{{ path('app_login') }}">login </a></div>
+                                        </section>
+                                        {{ form_end(registrationForm) }}
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <style>
+
+        .formadresse {
+            position: center;
+            margin-top: 100px;
+            margin-left: 190px;
+            width:1000px;
+        }
+
+        .card-header{
+            background-color:#4daea7 ;
+        }
+        .card-title{
+           text-align: center;
+        }
+    body{
+        background: url("Front/img/wood.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    </style>
+
+
+{% endblock %}

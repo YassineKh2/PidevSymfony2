@@ -1,0 +1,102 @@
+
+
+
+
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New Activite Centre{% endblock %}
+
+{% block body %}
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Activité</h4>
+                            <br><br><br>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+                                {{ form_start(form,{'attr':{'novalidate':'novalidate'}},{'attr':{'class':'forms-sample'}}) }}
+                                <div class="form-group row">
+                                    {{form_label(form.JourActivite,"Le jour de l'activité:")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.JourActivite,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.JourActivite) is not empty %}
+                                            <li class="text-danger">    <p class="form-text text-muted">{{ form_errors(form.JourActivite) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.NomActivite,"Nom de l'activite :")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.NomActivite,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.NomActivite) is not empty %}
+                                        <li class="text-danger"> <p class="form-text text-muted">{{ form_errors(form.NomActivite) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.ContenuActivite,"Contenu de l'activite :")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.ContenuActivite,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.ContenuActivite) is not empty %}
+                                        <li class="text-danger"> <p class="form-text text-muted">{{ form_errors(form.ContenuActivite) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.HeureDebutActivite,"Heure debut de l'activite  :")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.HeureDebutActivite,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.HeureDebutActivite) is not empty %}
+                                        <li class="text-danger">   <p class="form-text text-muted">{{ form_errors(form.HeureDebutActivite) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.HeureFinActivite,"Heure fin de l'activite :")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.HeureFinActivite,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.HeureFinActivite) is not empty %}
+                                        <li class="text-danger">   <p class="form-text text-muted">{{ form_errors(form.HeureFinActivite) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.NombreParticipantActiviteMax,"Nombre participant maximale:")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.NombreParticipantActiviteMax,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.NombreParticipantActiviteMax) is not empty %}
+                                        <li class="text-danger">   <p class="form-text text-muted">{{ form_errors(form.NombreParticipantActiviteMax) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    {{form_label(form.Planning,"Plan:")}}
+                                    <div class="col-sm-9">
+                                        {{form_widget(form.Planning,{'attr':{'class':'form-control'}})}}
+                                        {% if form_errors(form.Planning) is not empty %}
+                                        <li class="text-danger">  <p class="form-text text-muted">{{ form_errors(form.Planning) }}</p> </li>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div align="center" class="card-footer">
+                                    <button class="btn btn-primary mr-2">{{ button_label|default('Enregistrer') }}</button>
+                                    <button class="btn btn-primary mr-2"><a href="{{ path('app_activite_centre_index') }}">Retour</a></button>
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

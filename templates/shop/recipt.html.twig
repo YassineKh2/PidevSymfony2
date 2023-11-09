@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Receipt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th {
+            font-weight: bold;
+            background-color: #eee;
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid #ccc;
+        }
+        table td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="http://127.0.0.1:8000/index" class="logo me-auto"><img src="C:\Users\yassine\Desktop\ProjIng\public\{{ asset('Front/img/logo.png') }}" alt="" class="img-fluid" style="height: 100px; width: 100px"> <h1 class="logo me-auto"><a href="#">Rehab Radar</a></h1></a>
+    <h1>Receipt</h1>
+    {% set Prixtotal = 0  %}
+    {% if Pannier | length == 0 %}
+        <h1>Vous n'avez pas ajoutez des produit</h1>
+    {% else %}
+    <table>
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Nom</th>
+            <th>Prix</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Quantite</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for Ar in Pannier %}
+            <tr>
+                <td class="align-middle"><p><img src="C:\Users\yassine\Desktop\ProjIng\public\{{ asset(Ar.article.ImageArticle) }}" alt="" style="width: 50px;"></p></td>
+                <td>{{ Ar.article.NomArticle }}</td>
+                {% if Ar.color == 0 %}
+                    <td class="align-middle">-</td>
+                {% else %}
+                    <td class="align-middle">{{ Ar.color }}</td>
+                {% endif %}
+                {% if Ar.size == 0 %}
+                    <td class="align-middle">-</td>
+                {% else %}
+                    <td class="align-middle">{{ Ar.size }}</td>
+                {% endif %}
+                {% if (Ar.article.RemisePourcentageArticle != 0)  and (Ar.article.RemisePourcentageArticle != null) %}
+
+                    {% set NewPrix = Ar.article.PrixArticle - ( Ar.article.PrixArticle * Ar.article.RemisePourcentageArticle ) / 100  %}
+                    {% set total = NewPrix *   Ar.quantity %}
+                    <td class="align-middle">${{ NewPrix }}</td>
+                {% else %}
+                    {% set total =  Ar.article.PrixArticle *   Ar.quantity %}
+                    <td class="align-middle">${{ Ar.article.PrixArticle }}</td>
+                {% endif %}
+                <td class="align-middle">
+                    <div class="input-group quantity mx-auto" style="width: 100px;">
+                        <div> {{ Ar.quantity }}</div>
+                    </div>
+                </td>
+                {% set Prixtotal = Prixtotal + total  %}
+                <td class="align-middle">${{ total }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+  <h4>Prix Total = {{ Prixtotal }}dt</h4>
+
+</div>
+<div class="container">
+    <h1>Merci</h1>
+    <p>Cher(e) {{ NomUser }},</p>
+    <p>Nous tenons à vous remercier chaleureusement pour votre achat auprès de notre entreprise. Nous sommes ravis de vous compter parmi nos clients fidèles et nous espérons que vous avez été satisfait(e) de notre service et de nos produits.</p>
+    <p>Nous attachons une grande importance à la qualité de notre service clientèle et de nos produits, c'est pourquoi votre satisfaction est notre priorité absolue. Si vous avez des commentaires ou des suggestions à nous faire part, n'hésitez pas à nous contacter à tout moment.</p>
+    <p>Encore une fois, merci d'avoir choisi RehabRadar et nous espérons vous revoir bientôt pour votre prochain achat.</p>
+    <div class="signature">Cordialement,<br>RehabRadar</div>
+</div>
+</body>
+</html>
+
+

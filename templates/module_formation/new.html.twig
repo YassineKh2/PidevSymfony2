@@ -1,0 +1,20 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New Formation{% endblock %}
+{% block body %}
+    <div class="newform">
+        <h1>Ajouter Module</h1>
+
+        {{ include('module_formation/_form.html.twig') }}
+
+        <a href="{{ path('app_module_formation_index') }}"></a>
+    </div>
+    <style>
+        .newform{
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+    </style>
+{% endblock %}

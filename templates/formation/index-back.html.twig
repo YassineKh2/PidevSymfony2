@@ -1,0 +1,208 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Formation index Admin{% endblock %}
+
+{% block body %}
+    <div class="tab">
+    <h1>Formation index</h1>
+
+
+        <div class="col-lg-12">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control bg-light border-0 rounded-pill" id="searchInput" placeholder="Search...">
+
+                        </div>
+                        <table class="table header-border table-hover verticle-middle">
+                            <a href="{{ path('app_formation_new') }}" class="btn btn-primary btn-lg">
+                                <i class="fas fa-plus-square "></i>
+                                Créer Formation
+                            </a>                            <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nom formation</th>
+                                <th scope="col">Niveau</th>
+                                <th scope="col">ID formateur</th>
+                                <th scope="col">Nom formateur</th>
+                                <th scope="col">Modules Inclus</th>
+                                <th scope="col">Actions</th>
+
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            {% for formation in formations %}
+                            <tr>
+                                <th>{{ formation.id }}</th>
+                                <th>{{ formation.NomFormation }}</th>
+                                <th>{{ formation.NiveauFormation }}</th>
+                                <th>{{ formation.Formateur.getId() }}</th>
+                                <th>{{ formation.Formateur.getNomFormateur() }}</th>
+                                <th>{% for module in formation.moduleFormations %}
+                                       | {{ module.NomModule }} |
+                                    {% endfor %}
+                                </th>
+
+                                <th>
+                                <span><a href="{{ path('app_formation_edit', {'id': formation.id}) }}" class="mr-4" data-toggle="tooltip"
+                                             data-placement="top" title="Edit"><i
+                                                    class="fa fa-pencil color-muted"></i></a>
+                                    {{ include('formation/_delete_form.html.twig') }}</th>
+                                </span>
+
+                                </th>
+
+                            </tr>
+
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <canvas id="myChart" style="width:100%;max-width:900px;"></canvas>
+    </div>
+    <style>
+        .tab{
+
+            width: 1150px;
+            position: relative;
+            margin-top: 200px;
+            left: 300px;
+        }
+        .button_creer{
+
+
+            background: #ffffff;
+
+            position: relative;
+
+        }
+        .button_creer:hover{
+            height: 100%;
+            border-radius: 3px;
+            background: #9c00ff;
+
+            position: relative;
+
+        }
+        .button_text{
+            color: #7a6666;
+        }
+        .button_text:hover{
+            color: #000000;
+        }
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script>
+        let packNames = [];
+        let packPrices = [];
+
+        {% for formation in formations %}
+        packNames.push("{{ formation.nomFormation }}");
+        packPrices.push("{{ (formation.participantsUser).count }}");
+        {% endfor %}
+
+        // Fonction pour générer des couleurs aléatoires
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 15)];
+            }
+            return color;
+        }
+
+
+        // Création des données pour le graphique
+        let chartData = {
+            labels: packNames,
+            datasets: [{
+                data: packPrices,
+                backgroundColor: packNames.map(name => getRandomColor()),
+                borderWidth: 1,
+                borderColor: '#ddd',
+                hoverBorderColor: 'black'
+            }]
+        };
+
+        // Configuration des options du graphique
+        let chartOptions = {
+            title: {
+                display: true,
+                text: "Nombre de participants",
+                fontSize: 18,
+                fontFamily: 'Arial',
+                fontColor: '#333'
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        fontColor: '#666',
+                        fontSize: 14,
+                        fontFamily: 'Arial'
+                    },
+                    gridLines: {
+                        color: "#eee",
+                        zeroLineColor: "#666",
+                        zeroLineWidth: 1,
+                        lineWidth: 1,
+                        borderDash: [2, 2]
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        fontColor: '#666',
+                        fontSize: 14,
+                        fontFamily: 'Arial'
+                    },
+                    gridLines: {
+                        color: "transparent"
+                    }
+                }]
+            }
+        };
+
+        // Création du graphique
+        let ctx = document.getElementById('myChart').getContext('2d');
+        let myChart = new Chart(ctx, {
+            type: 'bar',
+            data: chartData,
+            options: chartOptions
+        });
+    </script>
+
+    <script>
+        function filterTable() {
+            const filter = document.getElementById('searchInput').value.toUpperCase();
+            const rows = document.querySelectorAll('table tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cols = rows[i].querySelectorAll('th');
+                let visible = false;
+                for (let j = 0; j < cols.length; j++) {
+                    const cell = cols[j];
+                    if (cell.innerText.toUpperCase().indexOf(filter) > -1) {
+                        visible = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = visible ? '' : 'none';
+            }
+        }
+        document.getElementById('searchInput').addEventListener('keyup', filterTable);
+    </script>
+
+{% endblock %}
+
